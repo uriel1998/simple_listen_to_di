@@ -31,4 +31,4 @@ stationname=$(cat $stationtemp | pick)
 #echo "$stationname"
 stationurl=$(echo "http://pub7.di.fm/di_"$stationname"_aac?1"	)
 #echo "$stationurl"
-mplayer "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1"
+mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1"
