@@ -1,0 +1,34 @@
+#!/bin/bash
+
+########################################################################
+#  A simple utility to allow listening to digitally imported from CLI
+#
+#  by Steven Saus
+#
+#  Licensed under a Creative Commons BY-SA 3.0 Unported license
+#  To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+#
+########################################################################
+
+########################################################################
+# Declarations
+########################################################################
+
+if [ -d $HOME/.config/listentodi ];then
+	stationtemp=$HOME/.config/listentodi/stations_list
+else
+	stationtemp=$(tempfile)
+fi
+
+
+# Someone else can figure out how to get the freaking descriptions
+# it would be by parsing <td class="streamdata"> in the same way, 
+# appending it to the station name, then taking it off again for the url
+
+curl http://pub7.di.fm/ | sed 's/<\/h3>/&\n/g' | sed 's/<h3>/\n&/g' | grep -e "<h3>" |grep -v -e ".flv" -e "aacplus" | sed 's/<\/h3>//' | sed 's/<h3>Mount Point \///' | sed 's/di_//' | sed 's/_aac//'> $stationtemp
+
+stationname=$(cat $stationtemp | pick)
+#echo "$stationname"
+stationurl=$(echo "http://pub7.di.fm/di_"$stationname"_aac?1"	)
+#echo "$stationurl"
+mplayer "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1"
