@@ -7,7 +7,11 @@ I'd be glad to pay a fee...but not the same price I pay for Netflix.
 Instead, you can keep telling people that due to "licensing agreements" 
 that I'm just playing this on my phone still.
 
-Only pulls the basic aac (64k) streams, not the plus streams.
+Pulls the catalog each time. If they change servers, icecast format, or
+allowed versions of the Android app, it should be easy to drop in a 
+replacement string
+
+Only gives the options of the basic aac (64k) streams, not the plus streams.
 
 Base concept comes from a post on [CommandLineFu](https://www.commandlinefu.com/commands/view/17185/listen-digitally-imported-radio-from-cli-without-premium).
 
