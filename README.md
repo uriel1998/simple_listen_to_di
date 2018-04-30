@@ -14,7 +14,9 @@ change it if you like.
 
 ## Getting Your Subscription/User Key
 Requires a paid subscription to Digitally Imported. Create the file
-``` $HOME/.config/diuserkey.rc
+
+**$HOME/.config/diuserkey.rc**
+
 and put your user key in as the first line.
 
 You can get your userkey by downloading any playlist from di.fm and 
