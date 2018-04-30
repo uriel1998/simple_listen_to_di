@@ -1,23 +1,34 @@
 # simple_listen_to_di
 
-A simple script to listen to a particular streaming station when I don't want to use my phone.
+Allows you to play Digitally Imported streams in the console.
 
-And if this particular...cough...imported...cough...station finds this,
-I'd be glad to pay a fee...but not the same price I pay for Netflix. 
-Instead, you can keep telling people that due to "licensing agreements" 
-that I'm just playing this on my phone still.
+## Description
 
-Pulls the catalog each time. If they change servers, icecast format, or
-allowed versions of the Android app, it should be easy to drop in a 
-replacement string
-
-Only gives the options of the basic aac (64k) streams, not the plus streams.
-
-Base concept comes from a post on [CommandLineFu](https://www.commandlinefu.com/commands/view/17185/listen-digitally-imported-radio-from-cli-without-premium).
+Pulls the catalog for Digitally Imported on run, parses it, and presents
+you with a list of available stations with the description cropped to 
+the size of the terminal. Uses *pick* to choose which one to use, calls
+*mplayer* to play the stream.
 
 Currently invokes mplayer in REALLY QUIET mode. Edit the script to 
 change it if you like.
 
-Dependencies: 
+## Getting Your Subscription/User Key
+Requires a paid subscription to Digitally Imported. Create the file
+``` $HOME/.config/diuserkey.rc
+and put your user key in as the first line.
+
+You can get your userkey by downloading any playlist from di.fm and 
+opening it up in a text editor. You'll see lines like this:
+
+``` File1=http://prem1.di.fm:80/trance?111aa1a1111111a
+``` Title1=DI.FM - Trance
+
+The part after the question mark is your user key. (This one is fake.)
+
+
+## Dependencies
 * [pick](https://github.com/thoughtbot/pick)
 * [mplayer](https://www.mplayerhq.hu/design7/news.html)
+
+## To Do
+* Create variants for Rockradio and Classical Radio
