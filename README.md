@@ -1,13 +1,13 @@
 # simple_listen_to_di
 
-Allows you to play Digitally Imported streams in the console.
+Allows you to play Digitally Imported (and other streams in that station network) in the console.
 
 ## Description
 
-Pulls the catalog for Digitally Imported on run, parses it, and presents
-you with a list of available stations with the description cropped to 
-the size of the terminal. Uses *pick* to choose which one to use, calls
-*mplayer* to play the stream.
+Pulls the catalog for Digitally Imported (or the other service) on run, 
+parses it, and presents you with a list of available stations with the 
+description cropped to the size of the terminal. Uses *pick* to choose 
+which one to use, calls *mplayer* to play the stream.
 
 Currently invokes mplayer in REALLY QUIET mode. Edit the script to 
 change it if you like.

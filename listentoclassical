@@ -1,0 +1,76 @@
+#!/bin/bash
+
+########################################################################
+#  A simple utility to allow listening to digitally imported from CLI
+#
+#  by Steven Saus
+#
+#  Licensed under a Creative Commons BY-SA 3.0 Unported license
+#  To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+#
+########################################################################
+
+########################################################################
+# Declarations
+########################################################################
+
+TEMPDIR=$(mktemp -d)
+touch $TEMPDIR/tempjson.json
+touch $TEMPDIR/tempkey.txt
+touch $TEMPDIR/tempname.txt
+touch $TEMPDIR/tempdesc.text
+touch $TEMPDIR/stationtemp.text
+TEMPJSON="$TEMPDIR/tempjson.json"
+TEMPKEY="$TEMPDIR/tempkey.txt"
+TEMPNAME="$TEMPDIR/tempname.txt"
+TEMPDESC="$TEMPDIR/tempdesc.text"
+TEMPSTATION="$TEMPDIR/stationtemp.text"
+TermWidth=$(tput cols)
+
+#get userkey
+userkey=$(head -1 $HOME/.config/diuserkey.rc)
+
+#get channel list
+VarA=$(curl https://www.classicalradio.com | awk -F "di.app.start" '{ print $2 }' | grep -e ")" )
+VarA=${VarA#?}
+VarA=${VarA%??}
+echo "$VarA" > "$TEMPJSON"
+OLDIFS=$IFS
+IFS=''
+
+#parse channel list
+cat "$TEMPJSON" | jq -r -M '.channels[] | .name' > $TEMPNAME
+readarray -t NameArr < $TEMPNAME
+
+cat "$TEMPJSON" | jq -r -M '.channels[] | .description' > $TEMPDESC
+readarray -t DescArr < $TEMPDESC
+
+cat "$TEMPJSON" | jq -r -M '.channels[] | .key' > $TEMPKEY
+readarray -t KeyArr < $TEMPKEY
+IFS=$OLDIFS
+
+channels=${#KeyArr[@]}
+# use for loop read all stations
+for (( i=0; i<${channels}; i++ ));
+do  
+  size=${#KeyArr[$i]}
+  size=$((size + 1))
+  spacing=$((TermWidth - size))
+  display1=$(echo "${NameArr[$i]} : ${DescArr[$i]}" | cut -c 1-${spacing} )
+  echo "$display1:${KeyArr[$i]}" >> $TEMPSTATION
+done
+
+stnm=$(cat $TEMPSTATION | pick | awk -F ":" '{print $3}')
+stationname=$(printf "%s_aac" "$stnm")
+
+stationurl=$(echo "http://prem4.classicalradio.com:80/$stationname?$userkey")
+echo "$stationurl"
+mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" 
+
+rm "$TEMPJSON"
+rm "$TEMPKEY"
+rm "$TEMPNAME"
+rm "$TEMPDESC"
+rm "$TEMPSTATION"
+rmdir "$TEMPDIR"
+
