@@ -34,5 +34,4 @@ The part after the question mark is your user key. (This one is fake.)
 * [pick](https://github.com/thoughtbot/pick)
 * [mplayer](https://www.mplayerhq.hu/design7/news.html)
 
-## To Do
-* Create variants for Rockradio and Classical Radio
+
