@@ -64,7 +64,13 @@ stationname=$(cat $TEMPSTATION | pick | awk -F ":" '{print $3}')
 #echo "$stationname"
 
 stationurl=$(echo "http://prem1.di.fm:80/$stationname?$userkey")
-mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" 
+if [ "$1" == "--mpd" ]; then
+    mpc add "$stationurl"
+    Position=$(mpc playlist | wc -l )
+    mpc play "$Position"
+else
+    mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
+fi
 
 rm "$TEMPJSON"
 rm "$TEMPKEY"

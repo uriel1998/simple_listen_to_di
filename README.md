@@ -9,8 +9,11 @@ parses it, and presents you with a list of available stations with the
 description cropped to the size of the terminal. Uses *pick* to choose 
 which one to use, calls *mplayer* to play the stream.
 
-Currently invokes mplayer in REALLY QUIET mode. Edit the script to 
-change it if you like.
+By default it currently invokes mplayer in REALLY QUIET mode. If you 
+would rather use MPD, invoke each script with --mpd to have it pipe
+the results to the end of the current MPD playlist and play it.
+
+Edit the script to change it if you like.
 
 ## Getting Your Subscription/User Key
 Requires a paid subscription to Digitally Imported. Create the file
