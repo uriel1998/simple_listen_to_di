@@ -2,8 +2,6 @@
 
 ## TODO: Make pretty mode optional
 ## TODO: Make quiet/bg mode optional
-## TODO: Rewrite terminal title with station
-
 
 ########################################################################
 #  A simple utility to allow listening to digitally imported from CLI
@@ -31,6 +29,7 @@ TEMPNAME="$TEMPDIR/tempname.txt"
 TEMPDESC="$TEMPDIR/tempdesc.text"
 TEMPSTATION="$TEMPDIR/stationtemp.text"
 TermWidth=$(tput cols)
+export SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 
 #get userkey
 userkey=$(head -1 $HOME/.config/diuserkey.rc)
@@ -85,9 +84,11 @@ else
     mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
     mplayer_PID=$!
     if [ -f $(which cava) ];then
+        echo "Loading $stationname"
         export TERM=xterm-256color
         cava
     else
+        echo "Listening to $stationname"
         read
     fi
     kill -9 ${mplayer_PID}
