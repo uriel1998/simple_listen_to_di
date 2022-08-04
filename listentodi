@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## TODO: Make pretty mode optional
+## TODO: Make quiet/bg mode optional
+## TODO: Rewrite terminal title with station
+
+
 ########################################################################
 #  A simple utility to allow listening to digitally imported from CLI
 #
