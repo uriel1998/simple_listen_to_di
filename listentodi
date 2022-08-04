@@ -77,7 +77,15 @@ if [ "$1" == "--mpd" ]; then
     Position=$(mpc playlist | wc -l )
     mpc play "$Position"
 else
-    mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" 
+    mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
+    mplayer_PID=$!
+    if [ -f $(which cava) ];then
+        export TERM=xterm-256color
+        cava
+    else
+        read
+    fi
+    kill -9 ${mplayer_PID}
 fi
 
 rm "$TEMPJSON"
