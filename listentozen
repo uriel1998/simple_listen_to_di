@@ -29,13 +29,16 @@ TermWidth=$(tput cols)
 
 #get userkey
 userkey=$(head -1 $HOME/.config/diuserkey.rc)
+
 if [ -f $(which fzf) ];then
     pick_bin=$(which fzf)
 else
     pick_bin=$(which pick)
 fi
+
+
 #get channel list
-VarA=$(curl https://www.rockradio.com | awk -F "di.app.start" '{ print $2 }' | grep -e ")" )
+VarA=$(curl https://www.zenradio.com | awk -F "di.app.start" '{ print $2 }' | grep -e ")" )
 VarA=${VarA#?}
 VarA=${VarA%??}
 echo "$VarA" > "$TEMPJSON"
@@ -64,11 +67,11 @@ do
   echo "$display1:${KeyArr[$i]}" >> $TEMPSTATION
 done
 
-stnm=$(cat $TEMPSTATION | ${pick_bin} | awk -F ":" '{print $3}')
-stationname=$(printf "%s_aac" "$stnm")
+stationname=$(cat $TEMPSTATION | ${pick_bin} | awk -F ":" '{print $3}')
+#echo "$stationname"
 
-stationurl=$(echo "http://prem1.rockradio.com:80/$stationname?$userkey")
-echo "$stationurl"
+
+stationurl=$(echo "http://prem1.zenradio.com:80/$stationname?$userkey")
 if [ "$1" == "--mpd" ]; then
     mpc add "$stationurl"
     Position=$(mpc playlist | wc -l )
