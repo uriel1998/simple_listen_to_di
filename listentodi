@@ -1,7 +1,5 @@
 #!/bin/bash
 
-## TODO: Make pretty mode optional
-## TODO: Make quiet/bg mode optional
 
 ########################################################################
 #  A simple utility to allow listening to digitally imported from CLI
@@ -84,11 +82,13 @@ else
     mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
     mplayer_PID=$!
     if [ -f $(which cava) ];then
-        echo "Loading $stationname"
+        echo "Loading $stationname... quit cava to exit the stream."
+        sleep 5
         export TERM=xterm-256color
         cava
     else
-        echo "Listening to $stationname"
+        echo "Listening to $stationname..."
+        echo "Press any key to exit the stream."
         read
     fi
     kill -9 ${mplayer_PID}
