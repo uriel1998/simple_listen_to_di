@@ -34,6 +34,11 @@ if [ -f $(which fzf) ];then
 else
     pick_bin=$(which pick)
 fi
+if [ -f $(which mplayer) ];then
+    mplayer_bin=$(which mplayer)
+else
+    mplayer_bin=$(which mpv)
+fi
 #get channel list
 VarA=$(curl https://www.classicalradio.com | awk -F "di.app.start" '{ print $2 }' | grep -e ")" )
 VarA=${VarA#?}
@@ -74,7 +79,7 @@ if [ "$1" == "--mpd" ]; then
     Position=$(mpc playlist | wc -l )
     mpc play "$Position"
 else
-    mplayer -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
+    "${mplayer_bin}" -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
     mplayer_PID=$!
     if [ -f $(which cava) ];then
         echo "Loading $stationname... quit cava to exit the stream."

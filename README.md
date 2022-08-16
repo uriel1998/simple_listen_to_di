@@ -9,7 +9,8 @@ parses it, and presents you with a list of available stations with the
 description cropped to the size of the terminal. Uses *fzf* or *pick* (automatically, 
 in that order) to choose a stream, then calls *mplayer* to play the stream.
 
-By default it currently invokes mplayer in REALLY QUIET mode. If you have 
+By default it currently invokes mplayer or, if mplayer is not installed (looking 
+at you, Debian bookworm), mpv in REALLY QUIET mode. If you have 
 `cava` on your `$PATH`, it will wait a moment, then display `cava`. Quitting 
 `cava` or pressing any key will kill the background instance of mplayer.
 
@@ -30,6 +31,8 @@ You can find your listen key on the DI website under Settings -> Player Settings
 
 * [fzf](https://github.com/junegunn/fzf) OR
 * [pick](https://github.com/thoughtbot/pick) 
-* [mplayer](https://www.mplayerhq.hu/design7/news.html)
+
+* [mplayer](https://www.mplayerhq.hu/design7/news.html) OR
+* [mpv](https://mpv.io/)
 
 
