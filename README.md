@@ -7,7 +7,10 @@ Allows you to play Digitally Imported (and other streams in that station network
 Pulls the catalog for Digitally Imported (or the other service) on run, 
 parses it, and presents you with a list of available stations with the 
 description cropped to the size of the terminal. Uses *fzf* or *pick* (automatically, 
-in that order) to choose a stream, then calls *mplayer* to play the stream.
+in that order) to choose a stream, then calls *mplayer* or *mpv* to play the stream.
+
+If you would rather use `rofi` as a GUI picker, put `--gui` as the **FIRST** argument 
+on the commandline.
 
 By default it currently invokes mplayer or, if mplayer is not installed (looking 
 at you, Debian bookworm), mpv in REALLY QUIET mode. If you have 
@@ -21,6 +24,10 @@ If you would rather pass the URL of the stream to something like my [stream_to_m
 utility, then invoke the script with --url to get the URL.  Example usage:
 
 `stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --url)`
+
+If you were wishing to choose using `rofi` and use `stream_to_mpd.sh`, then it would be:
+
+`stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --gui --url)`
 
 Edit the script to change it if you like.
 

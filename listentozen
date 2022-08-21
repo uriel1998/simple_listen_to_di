@@ -30,11 +30,16 @@ TermWidth=$(tput cols)
 
 #get userkey
 userkey=$(head -1 $HOME/.config/diuserkey.rc)
-
-if [ -f $(which fzf) ];then
-    pick_bin=$(which fzf)
+if [ "$1" == "--gui" ];then
+    shift
+    rofi_bin=$(which rofi)
+    pick_bin="${rofi_bin} -i -dmenu 'Which station?' -theme DarkBlue"
 else
-    pick_bin=$(which pick)
+    if [ -f $(which fzf) ];then
+        pick_bin=$(which fzf)
+    else
+        pick_bin=$(which pick)
+    fi
 fi
 if [ -f $(which mplayer) ];then
     mplayer_bin=$(which mplayer)
