@@ -84,19 +84,24 @@ if [ "$1" == "--mpd" ]; then
     Position=$(mpc playlist | wc -l )
     mpc play "$Position"
 else
-    "${mplayer_bin}" -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
-    mplayer_PID=$!
-    if [ -f $(which cava) ];then
-        echo "Loading $stationname... quit cava to exit the stream."
-        sleep 5
-        export TERM=xterm-256color
-        cava
+    if [ "$1" == "--url" ]; then
+        echo "${stationurl}"
+        exit 0
     else
-        echo "Listening to $stationname..."
-        echo "Press any key to exit the stream."
-        read
+        "${mplayer_bin}" -really-quiet "$stationurl" -user-agent "AudioAddict-di/3.2.0.3240 Android/5.1" &
+        mplayer_PID=$!
+        if [ -f $(which cava) ];then
+            echo "Loading $stationname... quit cava to exit the stream."
+            sleep 5
+            export TERM=xterm-256color
+            cava
+        else
+            echo "Listening to $stationname..."
+            echo "Press any key to exit the stream."
+            read
+        fi
+        kill -9 ${mplayer_PID}
     fi
-    kill -9 ${mplayer_PID}
 fi
 
 

@@ -17,6 +17,11 @@ at you, Debian bookworm), mpv in REALLY QUIET mode. If you have
 If you would rather use MPD, invoke each script with --mpd to have it pipe
 the results to the end of the current MPD playlist and play it.
 
+If you would rather pass the URL of the stream to something like my [stream_to_mpd.sh](https://git.faithcollapsing.com/yolo-mpd/tree/master/) 
+utility, then invoke the script with --url to get the URL.  Example usage:
+
+`stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --url)`
+
 Edit the script to change it if you like.
 
 ## Getting Your Subscription/User Key
