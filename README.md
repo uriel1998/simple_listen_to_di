@@ -25,6 +25,12 @@ utility, then invoke the script with --url to get the URL.  Example usage:
 
 `stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --url)`
 
+**NOTE** If you have issues with GUI option in an Openbox/etc menu, please try:
+
+`sh -c 'stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --url)'`
+
+as the command to call.
+
 If you were wishing to choose using `rofi` and use `stream_to_mpd.sh`, then it would be:
 
 `stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --gui --url)`
