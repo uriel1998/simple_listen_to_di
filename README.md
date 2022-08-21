@@ -27,7 +27,7 @@ utility, then invoke the script with --url to get the URL.  Example usage:
 
 **NOTE** If you have issues with GUI option in an Openbox/etc menu, please try:
 
-`sh -c 'stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --url)'`
+`/bin/bash -c 'stream_to_mpd.sh --mpd --host myseekretpassword@mympdhost $(listentodi --url)'`
 
 as the command to call.
 
