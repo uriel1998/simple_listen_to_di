@@ -42,7 +42,8 @@ You can find your listen key on the DI website under Settings -> Player Settings
 ## Dependencies
 
 * [fzf](https://github.com/junegunn/fzf) OR
-* [pick](https://github.com/thoughtbot/pick) 
+* [pick](https://github.com/thoughtbot/pick) OR
+* [rofi](https://github.com/davatorium/rofi) (with the --gui switch as the *first* argument)  
 
 * [mplayer](https://www.mplayerhq.hu/design7/news.html) OR
 * [mpv](https://mpv.io/)
