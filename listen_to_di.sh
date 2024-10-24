@@ -11,19 +11,8 @@
 #  (c) 2024 
 # 
 ########################################################################
-
-########################################################################
-# Declarations
-########################################################################
-
-
-# get playlists
-# all or just one?
-# present contents of playlist to choose from via fzf
-    # can we preview?
-# send to play, mpv, vlc, mpc, etc
  
-
+ 
 # Function to display usage
 usage() {
     echo "Usage: $0 --player {mpc|mpd|audacious|mpv|deadbeef|mplayer|play|vlc} --directory /path/to/pls/files"
