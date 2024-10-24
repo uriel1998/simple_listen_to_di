@@ -4,6 +4,9 @@ Allows you to play Digitally Imported (and other streams in that station network
 
 ## Description
 
+Allows you to select from downloaded pls playlists of "favorites" from the digitally imported
+family of stations. You need to get these manually; yes you can select all the stations as "favorites".
+
 Pulls the catalog for Digitally Imported (or the other service) on run, 
 parses it, and presents you with a list of available stations with the 
 description cropped to the size of the terminal. Uses *fzf* or *pick* (automatically, 
