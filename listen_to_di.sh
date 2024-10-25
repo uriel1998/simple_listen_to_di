@@ -25,7 +25,7 @@ player=""
 pls_directory=""
 
 if [ -n "$DI_PLAYER" ];then
-	player="${DIPLAYER}"
+	player="${DI_PLAYER}"
 fi
 
 if [ -n "$DI_PLS_DIR" ];then
