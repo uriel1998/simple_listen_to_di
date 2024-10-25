@@ -19,9 +19,18 @@ usage() {
     exit 1
 }
 
+
 # Default values
 player=""
 pls_directory=""
+
+if [ -n "$DI_PLAYER" ];then
+	player="${DIPLAYER}"
+fi
+
+if [ -n "$DI_PLS_DIR" ];then
+	pls_directory="${DI_PLS_DIR}"
+fi
 
 # Parse command-line arguments
 while [[ "$#" -gt 0 ]]; do

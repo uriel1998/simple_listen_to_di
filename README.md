@@ -23,10 +23,14 @@ Then invoke this script:
 
 It uses `fzf` to allow you to choose whatever station you like from the pls files. 
 
+if you have the environment variables `$DI_PLAYER` and `$DI_PLS_DIR` exported, then those will be used as defaults unless specified on the commandline.
+
+
 Requires a **paid subscription** to Digitally Imported or any of the other 
 services. 
 
 Technically should work with ANY streaming playlist in PLS format.
+
 
 ## Dependencies
 
